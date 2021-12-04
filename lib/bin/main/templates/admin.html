@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/main.css}">
+<link rel="stylesheet" th:href="@{css/mobile.css}">
+<script th:src="@{js/main.js}"></script>
+<title>My Bag | Administrador</title>
+</head>
+<body>
+    <header>
+        <h1>My Bag</h1>
+        <img th:src="@{img/logo.png}" alt="">
+        <!-- Barra de navegação -->
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Início</a></li>
+                <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                <li><a th:href="@{/delivery}">Baglivery</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/admin}">Administrador</a></li>
+            </ul>
+        </nav>
+        <!-- controle do menu responsivo -->
+        <div>
+            <a href="#" class="icon" onclick="trocarClasse();">
+                <img th:src="@{img/menu-grande.png}" alt="menu responsivo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="area-flex cartao bg-light">
+		 <div>
+		     <h2 class="text-danger">Área do Administrador</h2>
+		     <div class="cartao area-form bg-light ajustar wrap">
+		     	<div>
+		     		<h3 class="text-primary">Clientes</h3>
+		     		<table class="table-primary">
+		     			<thead class="bg-primary">
+		     				<tr>
+		     					<th class="text-light text-center">ID Cliente</th>
+		     					<th class="text-light text-center">Cliente</th>
+		     					<th class="text-light text-center">CPF</th>
+		     					<th class="text-light text-center">Telefone</th>
+		     					<th> </th>
+		     					<th> </th>
+		     				</tr>
+		     			</thead>
+		     			<tbody>
+		     				<tr th:each="cliente : ${cliente}">
+		     					<td class="text-primary text-center" th:text="${cliente.idCliente}"></td>
+		     					<td class="text-primary text-center" th:text="${cliente.nome}"></td>
+		     					<td class="text-primary text-center" th:text="${cliente.cpf}"></td>
+		     					<td class="text-primary text-center" th:text="${cliente.telefone}"></td>
+		     					<td>
+		     						<a class="link-botao btn-lg btn-warning" th:href="@{'/editcliente/'+${cliente.idCliente}}">
+            							Editar
+            						</a>
+            					</td>
+            					<td>
+		     						<form th:action="@{'/delcliente/'+${cliente.idCliente}}" method="post">
+		     							<button class="link-botao btn-xs btn-danger" type="submit">Apagar</button>
+		     						</form>
+		     					</td>
+		     				</tr>
+		     			</tbody>
+		     		</table>
+		     		<div>
+		     			<a class="link-botao btn-lg btn-primary" th:href="@{/delivery}">Adicionar Cliente</a>
+		     		</div>
+		     	</div>
+		     	<br>
+		     	<hr>
+		     	<div>
+		     		<h3 class="text-primary">Produtos</h3>
+		     		<table class="table-primary">
+		     			<thead class="bg-primary">
+		     				<tr>
+		     					<th class="text-light text-center">ID</th>
+		     					<th class="text-light text-center">Nome</th>
+		     					<th class="text-light text-center">Valor</th>
+		     					<th> </th>
+		     					<th> </th>
+		     				</tr>
+		     			</thead>
+		     			<tbody>
+		     				<tr th:each="produto : ${produto}">
+		     					<td class="text-primary text-center" th:text="${produto.idProduto}"></td>
+		     					<td class="text-primary text-center" th:text="${produto.nomeProduto}"></td>
+		     					<td class="text-primary text-center" th:text="${produto.valor}"></td>
+		     					<td>
+		     						<a class="link-botao btn-lg btn-warning" th:href="@{'/editproduto/'+${produto.idProduto}}">
+            							Editar
+            						</a>
+            					</td>
+		     					<td>
+		     						<form th:action="@{'/delproduto/'+${produto.idProduto}}" method="post">
+		     							<button class="link-botao btn-xs btn-danger" type="submit">Apagar</button>
+		     						</form>
+		     					</td>
+		     				</tr>
+		     			</tbody>
+		     		</table>
+		     		<div>
+		     			<a class="link-botao btn-lg btn-primary" th:href="@{/produto}">Adicionar Produto</a>
+		     		</div>
+		     	</div>
+		     	<br>
+		     	<hr>
+		     	<div>
+		     		<h3 class="text-primary">Pedidos</h3>
+		     		<table class="table-primary">
+		     			<thead class="bg-primary">
+		     				<tr>
+		     					<th class="text-light text-center">ID Pedido</th>
+		     					<th class="text-light text-center">ID Cliente</th>
+		     					<th class="text-light text-center">Data</th>
+		     					<th class="text-light text-center">Hora</th>
+		     					<th class="text-light text-center">Tipo Pagamento</th>
+		     					<th> </th>
+		     				</tr>
+		     			</thead>
+		     			<tbody>
+		     				<tr th:each="pedido : ${pedido}">
+		     					<td class="text-primary text-center" th:text="${pedido.idPedido}"></td>
+		     					<td class="text-primary text-center" th:text="${pedido.idCliente}"></td>
+		     					<td class="text-primary text-center" th:text="${pedido.data}"></td>
+		     					<td class="text-primary text-center" th:text="${pedido.hora}"></td>
+		     					<td class="text-primary text-center" th:text="${pedido.pagamento}"></td>
+		     					<td>
+		     						<form th:action="@{'/delpedido/'+${pedido.idPedido}}" method="post">
+		     							<button class="link-botao btn-xs btn-danger" type="submit">Apagar</button>
+		     						</form>
+		     					</td>
+		     				</tr>
+		     			</tbody>
+		     		</table>
+		     	</div>
+		     </div>
+   		</div>
+      	</div>
+    </main>
+    <footer>
+        <div class="area-flex">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Início</a></li>
+                    <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                    <li><a th:href="@{/delivery}">Baglivery</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2>Sobre a <span class="text-light">My Bag</span></h2>
+                <p>My Bag - Uma forma simples, fácil e legal pra encontrar sua bag ideal!</p>
+            </div>
+            <div>
+                <address>
+                    <p>
+                        <img th:src="@{img/pin.png}" alt="">
+                        Rua Carvalho de mendonça, 385 - 11070-101<br>Marapé - 
+                        Santos / SP
+                    </p>
+                    <p>
+                        <img th:src="@{img/mail.png}" alt="">
+                        contato@mybag.com
+                    </p>
+                    <p>
+                        <img th:src="@{img/phone.png}" alt="">
+                        (13) 3352-3656
+                    </p>
+                    <p>
+                        <img src="@{img/mobile.png}" alt="">
+                        (13) 9 7431-5007
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div>
+            <p>
+                Desenvolvido por Wesley Nascimento
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/main.css}">
+<link rel="stylesheet" th:href="@{css/mobile.css}">
+<script th:src="@{js/main.js}"></script>
+<title>My Bag | Pedido</title>
+</head>
+<body>
+    <header>
+        <h1>My Bag</h1>
+        <img th:src="@{img/logo.png}" alt="">
+        <!-- Barra de navegação -->
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Início</a></li>
+                <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                <li><a th:href="@{/delivery}">Baglivery</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/admin}">Administrador</a></li>
+            </ul>
+        </nav>
+        <!-- controle do menu responsivo -->
+        <div>
+            <a class="icon" onclick="trocarClasse();">
+                <img th:src="@{img/menu-grande.png}" alt="menu responsivo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div id="inicio" class="bg-warning">
+            <!-- BANNER DE FUNDO -->
+            <div class="area-flex centralizar">
+                <img th:src="@{img/banner.png}" alt="">
+            </div>
+        </div>
+        <div class="bg-secondary">
+            <div class="area-flex area-form cartao bg-light centralizar">
+                <div>
+                    <h2 class="text-danger text-center">Pedido recebido!</h2>
+                    <span class="espaco-linha">*</span>
+                    <p class="text-primary text-center">Sua bag já está a caminho!</p>
+                    <span class="espaco-linha">*</span>
+                    <p class="text-primary text-center">
+                        Só esperar uns minutinhos e sua bag chegará até você.
+                    </p>
+                    <span class="espaco-linha">*</span>
+                    <p class="text-secondary text-center">Agradecemos pela preferência!</p>
+                    <span class="espaco-linha">*</span>
+                </div>
+                <div class="area-flex centralizar">
+                    <img th:src="@{img/relogio.png}" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="area-flex">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Início</a></li>
+                    <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                    <li><a th:href="@{/delivery}">Baglivery</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2>Sobre a <span class="text-light">My Bag</span></h2>
+                <p>My Bag - Uma forma simples, fácil e legal pra encontrar sua bag ideal!</p>
+            </div>
+            <div>
+                <address>
+                    <p>
+                        <img th:src="@{img/pin.png}" alt="">
+                        Rua Carvalho de mendonça, 385 - 11070-101<br>Marapé - 
+                        Santos / SP
+                    </p>
+                    <p>
+                        <img th:src="@{img/mail.png}" alt="">
+                        contato@mybag.com
+                    </p>
+                    <p>
+                        <img th:src="@{img/phone.png}" alt="">
+                        (13) 3352-3656
+                    </p>
+                    <p>
+                        <img src="@{img/mobile.png}" alt="">
+                        (13) 9 7431-5007
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div>
+            <p>
+                Desenvolvido por Wesley Nascimento
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

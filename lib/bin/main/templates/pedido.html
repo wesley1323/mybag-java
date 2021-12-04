@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/main.css}">
+<link rel="stylesheet" th:href="@{css/mobile.css}">
+<script th:src="@{js/main.js}"></script>
+<title>My Bag | Confirmar Pedido</title>
+</head>
+<body>
+	<header>
+        <h1>My Bag</h1>
+        <img src="@{img/logo.png}" alt="">
+        <!-- Barra de navegação -->
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Início</a></li>
+                <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                <li><a th:href="@{/delivery}">Baglivery</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/admin}">Administrador</a></li>
+            </ul>
+        </nav>
+        <!-- controle do menu responsivo -->
+        <div>
+            <a class="icon" onclick="trocarClasse();">
+                <img th:src="@{img/menu-grande.png}" alt="menu responsivo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div id="inicio" class="bg-warning">
+            <!-- BANNER DE FUNDO -->
+            <div class="area-flex centralizar">
+                <img th:src="@{img/banner.png}" alt="">
+            </div>
+        </div>
+        <section class="bg-secondary">
+            <h2>Confirme seu pedido!</h2>
+            <div class="area-form cartao bg-light">
+                <div>
+                	<h3 class="text-danger">Dados Pessoais</h3>
+                	<ul>
+                     	<li class="text-primary" th:text="'Cliente: '+${cliente.nome}"></li>
+                     	<li class="text-primary" th:text="'CPF: '+${cliente.cpf}"></li>
+                     	<li class="text-primary" th:text="'Endereço: '+${cliente.endereco} +', '+${cliente.bairro}+' - '+${cliente.cidade}+' / '+${cliente.estado}"></li>
+                     </ul>
+                </div>
+                <form action="#" th:action="@{/confpedido}" method="post" th:object="${pedido}"> 
+                	<input type="hidden" th:field="*{idCliente}" th:value="${cli.idCliente}">
+         
+                     <fieldset>
+                     	<legend class="text-primary">Escolha sua Bag</legend>
+		     			<div class="dados-flex">
+		     				<div class="dado-form">
+		     					<label class="text-primary" for="produto">Selecione a Bag</label>
+			     				<select th:field="*{idProduto}" required>
+			     					<option th:each="produto : ${produto}" th:text="${produto.nomeProduto}" th:value="${produto.idProduto}"></option>
+			     				</select>
+		     				</div>
+		     				<div class="dado-form">
+		     					<label class="text-primary" for="quantidade">Quantidade</label>
+		     					<input type="number" min="1" max="100" th:field="*{quantidade}" required>
+		     				</div>
+		     			</div>	
+		     			
+                        <legend class="text-primary">Escolha a forma de pagamento <span class="cor-alerta">*</span></legend>
+                        <div class="dados-flex">
+                            <div>
+                                <label class="text-primary" for="pagamento-cartao">Cartão (Débito / Crédito)</label>
+                                <input type="radio" th:field="*{pagamento}" id="pagamento-cartao" value="cartao">
+                            </div>
+                            <div>
+                                <label class="text-primary" for="pagamento-dinheiro">Dinheiro</label>
+                                <input type="radio" th:field="*{pagamento}" id="pagamento-dinheiro" value="dinheiro" th:checked="${pedido.pagamento}">
+                            </div>
+                        </div>
+                    </fieldset>   
+    
+                    <button id="conf-pedido" class="link-botao btn-lg btn-primary" type="submit">Confirmar Pedido</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="area-flex">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Início</a></li>
+                    <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                    <li><a th:href="@{/delivery}">Baglivery</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                    <li><a th:href="@{/admin}">Administrador</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2>Sobre a <span class="text-light">My Bag</span></h2>
+                <p>My Bag - Uma forma simples, fácil e legal pra encontrar sua bag ideal!</p>
+            </div>
+            <div>
+                <address>
+                    <p>
+                        <img th:src="@{img/pin.png}" alt="">
+                        Rua Carvalho de mendonça, 385 - 11070-101<br>Marapé - 
+                        Santos / SP
+                    </p>
+                    <p>
+                        <img th:src="@{img/mail.png}" alt="">
+                        contato@mybag.com
+                    </p>
+                    <p>
+                        <img th:src="@{img/phone.png}" alt="">
+                        (13) 3352-3656
+                    </p>
+                    <p>
+                        <img src="@{img/mobile.png}" alt="">
+                        (13) 9 7431-5007
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div>
+            <p>
+                Desenvolvido por Wesley Nascimento
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

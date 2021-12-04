@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/main.css}">
+<link rel="stylesheet" th:href="@{css/mobile.css}">
+<script th:src="@{js/main.js}"></script>
+<title>My Bag | Produto</title>
+</head>
+<body>
+	<header>
+        <h1>My Bag</h1>
+        <img th:src="@{img/logo.png}" alt="">
+        <!-- Barra de navegação -->
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Início</a></li>
+                <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                <li><a th:href="@{/delivery}">Baglivery</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/admin}">Administrador</a></li>
+            </ul>
+        </nav>
+        <!-- controle do menu responsivo -->
+        <div>
+            <a class="icon" onclick="trocarClasse();">
+                <img th:src="@{img/menu-grande.png}" alt="menu responsivo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div id="inicio" class="bg-warning">
+            <!-- BANNER DE FUNDO -->
+            <div class="area-flex centralizar">
+                <img th:src="@{img/banner.png}" alt="">
+            </div>
+        </div>
+        <section class="bg-secondary">
+            <h2 class="text-danger">Cadastrar um novo Produto</h2>
+            <div class="area-form cartao bg-light centralizar">
+                <form action="#" th:action="@{/sucesso}" method="post" th:object="${produto}">
+                    <p class="text-danger">* Dados obrigatórios</p>
+                    
+                    <div class="dado-form">
+                        <label class="text-primary" for="nome-produto">Nome do Produto <span class="text-danger">*</span></label>
+                        <input type="text" th:field="*{nomeProduto}" id="nome-produto" required placeholder="Bag Lucena">
+                    </div>
+                    <div class="dado-form">
+                        <label class="text-primary" for="desc-produto">Descrição <span class="text-danger">*</span></label>
+                        <textarea th:field="*{descProduto}" id="desc-produto" rows="6" required placeholder="Bolsa grande..."></textarea>
+                    </div>
+                    <div class="dado-form">
+                        <label class="text-primary" for="img-produto">Link da Imagem <span class="text-danger">*</span></label>
+                        <input type="search" th:field="*{imgProduto}" id="img-produto" required placeholder="https://https://raw.githubusercontent.com/wesley1323/wesley1323.github.io/main/1001319_mala-pequena-lucerna-em-poliester-2-rodas-preta-10205_m1_637721307318705241.jpg">
+                    </div>
+                    <div class="dado-form">
+                        <label class="text-primary" for="valor-produto">Valor <span class="text-danger">*</span></label>
+                        <input type="number" th:field="*{valor}" id="valor-produto" required step="0.25" min="1">
+                    </div>
+                    <button id="add-produto" class="link-botao btn-lg btn-primary" type="submit">Adicionar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="area-flex">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Início</a></li>
+                    <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                    <li><a th:href="@{/delivery}">Baglivery</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                    <li><a th:href="@{/admin}">Administrador</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2>Sobre a <span class="text-light">My Bag</span></h2>
+                <p>My Bag - Uma forma simples, fácil e legal pra encontrar sua bag ideal!</p>
+            </div>
+            <div>
+                <address>
+                    <p>
+                        <img th:src="@{img/pin.png}" alt="">
+                        Rua Carvalho de mendonça, 385 - 11070-101<br>Marapé - 
+                        Santos / SP
+                    </p>
+                    <p>
+                        <img th:src="@{img/mail.png}" alt="">
+                        contato@mybag.com
+                    </p>
+                    <p>
+                        <img th:src="@{img/phone.png}" alt="">
+                        (13) 3352-3656
+                    </p>
+                    <p>
+                        <img src="@{img/mobile.png}" alt="">
+                        (13) 9 7431-5007
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div>
+            <p>
+                Desenvolvido por Wesley Nascimento
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

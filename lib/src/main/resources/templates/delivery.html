@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/main.css}">
+<link rel="stylesheet" th:href="@{css/mobile.css}">
+<script th:src="@{js/main.js}"></script>
+<title>My Bag | Baglivery</title>
+</head>
+<body>
+	<header>
+        <h1>My Bag</h1>
+        <img th:src="@{img/logo.png}" alt="">
+        <!-- Barra de navegação -->
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Início</a></li>
+                <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                <li><a th:href="@{/delivery}">Baglivery</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/admin}">Administrador</a></li>
+            </ul>
+        </nav>
+        <!-- controle do menu responsivo -->
+        <div>
+            <a class="icon" onclick="trocarClasse();">
+                <img th:src="@{img/menu-grande.png}" alt="menu responsivo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div id="inicio" class="bg-warning">
+            <!-- BANNER DE FUNDO -->
+            <div class="area-flex centralizar">
+                <img th:src="@{img/banner.png}" alt="">
+            </div>
+        </div>
+        <section class="bg-secondary">
+            <h2>Peça aqui a sua Bag!</h2>
+            <div class="area-form cartao bg-light">
+                <div id="campo-erro">
+                </div>
+                <form action="#" th:action="@{/pedido}" method="post" th:object="${cliente}">
+                    <p class="text-danger">* Dados obrigatórios</p>
+                    <fieldset>
+                        <legend class="text-primary">Dados Pessoais</legend>
+                        <div class="dado-form">
+                            <label class="text-primary" for="nome-cliente">Nome Completo <span class="text-danger">*</span></label>
+                            <input type="text" th:field="*{nome}" id="nome-cliente" required>
+                        </div>
+                        <div class="dados-flex">
+                            <div class="dado-form">
+                                <label class="text-primary" for="cpf-cliente">CPF <span class="text-danger">*</span></label>
+                                <input type="text" th:field="*{cpf}" id="cpf-cliente" required>
+                            </div>
+                            <div class="dado-form">
+                                <label class="text-primary" for="telefone-cliente">Telefone <span class="text-danger">*</span></label>
+                                <input type="tel" th:field="*{telefone}" id="telefone-cliente" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="text-primary">Endereço para entrega</legend>
+                        <div class="dados-flex">
+                            <div class="dado-form">
+                                <label class="text-primary" for="endereco-cliente">Endereço <span class="text-danger">*</span></label>
+                                <input type="text" th:field="*{endereco}" id="endereco-cliente">
+                            </div>
+                        </div>
+                        <div class="dados-flex">
+                            <div class="dado-form">
+                                <label class="text-primary" for="bairro-cliente">Bairro <span class="text-danger">*</span></label>
+                                <input type="text" th:field="*{bairro}" id="bairro-cliente">
+                            </div>
+                            <div class="dado-form">
+                                <label class="text-primary" for="cidade-cliente">Cidade <span class="text-danger">*</span></label>
+                                <input type="text" th:field="*{cidade}" id="cidade-cliente">
+                            </div>
+                            <div class="dado-form">
+                                <label class="text-primary" for="estado-cliente">Estado</label>
+                                <input id="estado-cliente" th:field="*{estado}" placeholder="SP">
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <button id="cad-info" class="link-botao btn-primary btn-lg" type="submit">Fazer Pedido</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="area-flex">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Início</a></li>
+                    <li><a th:href="@{/catalogo}">Bolsas e Malas</a></li>
+                    <li><a th:href="@{/delivery}">Baglivery</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2>Sobre a <span class="text-light">My Bag</span></h2>
+                <p>My Bag - Uma forma simples, fácil e legal pra encontrar sua bag ideal!</p>
+            </div>
+            <div>
+                <address>
+                    <p>
+                        <img th:src="@{img/pin.png}" alt="">
+                        Rua Carvalho de mendonça, 385 - 11070-101<br>Marapé - 
+                        Santos / SP
+                    </p>
+                    <p>
+                        <img th:src="@{img/mail.png}" alt="">
+                        contato@mybag.com
+                    </p>
+                    <p>
+                        <img th:src="@{img/phone.png}" alt="">
+                        (13) 3352-3656
+                    </p>
+                    <p>
+                        <img src="@{img/mobile.png}" alt="">
+                        (13) 9 7431-5007
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div>
+            <p>
+             	Desenvolvido por Wesley Nascimento
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
